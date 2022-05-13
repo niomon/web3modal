@@ -9,7 +9,7 @@ import WalletConnect from "@walletconnect/web3-provider";
 // @ts-ignore
 import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 // @ts-ignore
-import Torus from "@toruslabs/torus-embed";
+import * as Ditto from "@niomon/ditto-js";
 
 import Button from "./components/Button";
 import Column from "./components/Column";
@@ -238,13 +238,19 @@ class App extends React.Component<any, any> {
           infuraId
         }
       },
-      torus: {
-        package: Torus
-      },
       coinbasewallet: {
         package: CoinbaseWalletSDK,
         options: {
           appName: "Web3Modal Example App",
+          infuraId
+        }
+      },
+      ditto: {
+        package: Ditto,
+        options: {
+          network: "mainnet",
+          appId: process.env.REACT_APP_DITTO_APP_ID,
+          baseUrl: process.env.REACT_APP_DITTO_BASE_URL,
           infuraId
         }
       }
