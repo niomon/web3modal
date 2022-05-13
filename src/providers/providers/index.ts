@@ -28,6 +28,8 @@ import CoinbaseWalletLogo from "../logos/coinbasewallet.svg";
 import WalletLinkLogo from "../logos/walletlink.svg";
 // @ts-ignore
 import SequenceLogo from "../logos/sequence.svg";
+// @ts-ignore
+import DittoLogo from "../logos/ditto.svg";
 
 import { IProviderInfo } from "../../helpers";
 
@@ -181,4 +183,12 @@ export const SEQUENCE: IProviderInfo = {
   logo: SequenceLogo,
   type: "web",
   check: "isSequenceWeb"
+};
+
+export const DITTO: IProviderInfo = {
+  id: "ditto",
+  name: "Ditto",
+  logo: DittoLogo,
+  type: "web",
+  check: "isDitto"
 };
