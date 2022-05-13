@@ -3,6 +3,7 @@ import { IAbstractConnectorOptions, getChainId } from "../../helpers";
 export interface IDittoConnectorOptions extends IAbstractConnectorOptions {
   appId: string;
   network: string;
+	baseUrl?: string;
 	infuraId?: string;
   alchemyId?: string;
 }
@@ -15,6 +16,7 @@ const ConnectToDitto = async (Ditto: any, opts: IDittoConnectorOptions) => {
       const provider = new Ditto.EthereumProvider({
 				appId: opts.appId,
 				chainId,
+				baseUrl: opts.baseUrl,
 				infuraId: opts.infuraId,
 				alchemyId: opts.alchemyId
       });
