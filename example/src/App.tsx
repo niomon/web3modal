@@ -209,8 +209,12 @@ class App extends React.Component<any, any> {
     }
     provider.on("close", () => this.resetApp());
     provider.on("accountsChanged", async (accounts: string[]) => {
-      await this.setState({ address: accounts[0] });
-      await this.getAccountAssets();
+      if (!!accounts.length) {
+        await this.setState({ address: accounts[0] });
+        await this.getAccountAssets();
+      } else {
+        await this.setState({ ...INITIAL_STATE });
+      }
     });
     provider.on("chainChanged", async (chainId: number) => {
       const { web3 } = this.state;
@@ -509,6 +513,7 @@ class App extends React.Component<any, any> {
               </Column>
             ) : !!assets && !!assets.length ? (
               <SBalances>
+                {console.log(assets)}
                 <h3>Actions</h3>
                 <Column center>
                   <STestButtonContainer>
