@@ -1,18 +1,18 @@
-import { DAI_CONTRACT } from '../constants'
+import { FAU_CONTRACT } from '../constants'
 
-export function getDaiContract(chainId: number, web3: any) {
-  const dai = new web3.eth.Contract(
-    DAI_CONTRACT[chainId].abi,
-    DAI_CONTRACT[chainId].address
+export function getFauContract(chainId: number, web3: any) {
+  const fau = new web3.eth.Contract(
+    FAU_CONTRACT[chainId].abi,
+    FAU_CONTRACT[chainId].address
   )
-  return dai
+  return fau
 }
 
 export function callBalanceOf(address: string, chainId: number, web3: any) {
   return new Promise(async(resolve, reject) => {
-    const dai = getDaiContract(chainId, web3)
+    const fau = getFauContract(chainId, web3)
 
-    await dai.methods
+    await fau.methods
       .balanceOf(address)
       .call(
         { from: '0x0000000000000000000000000000000000000000' },
@@ -29,9 +29,9 @@ export function callBalanceOf(address: string, chainId: number, web3: any) {
 
 export function callTransfer(address: string, chainId: number, web3: any) {
   return new Promise(async(resolve, reject) => {
-    const dai = getDaiContract(chainId, web3)
+    const fau = getFauContract(chainId, web3)
 
-    await dai.methods
+    await fau.methods
       .transfer(address, '1')
       .send({ from: address }, (err: any, data: any) => {
         if (err) {

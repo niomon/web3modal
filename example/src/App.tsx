@@ -35,8 +35,8 @@ import {
   ETH_SEND_TRANSACTION,
   ETH_SIGN,
   PERSONAL_SIGN,
-  DAI_BALANCE_OF,
-  DAI_TRANSFER
+  FAU_BALANCE_OF,
+  FAU_TRANSFER
 } from "./constants";
 import { callBalanceOf, callTransfer } from "./helpers/web3";
 
@@ -248,7 +248,7 @@ class App extends React.Component<any, any> {
       ditto: {
         package: Ditto,
         options: {
-          network: "rinkeby",
+          network: "ropsten",
           appId: process.env.REACT_APP_DITTO_APP_ID,
           baseUrl: process.env.REACT_APP_DITTO_BASE_URL,
           infuraId
@@ -424,10 +424,10 @@ class App extends React.Component<any, any> {
   public testContractCall = async (functionSig: string) => {
     let contractCall = null;
     switch (functionSig) {
-      case DAI_BALANCE_OF:
+      case FAU_BALANCE_OF:
         contractCall = callBalanceOf;
         break;
-      case DAI_TRANSFER:
+      case FAU_TRANSFER:
         contractCall = callTransfer;
         break;
 
@@ -490,6 +490,7 @@ class App extends React.Component<any, any> {
       pendingRequest,
       result
     } = this.state;
+    const chainName = chainId ? getChainData(chainId).name : null;
     return (
       <SLayout>
         <Column maxWidth={1000} spanHeight>
@@ -524,17 +525,19 @@ class App extends React.Component<any, any> {
                     </STestButton>
                     <STestButton
                       left
-                      onClick={() => this.testContractCall(DAI_BALANCE_OF)}
+                      onClick={() => this.testContractCall(FAU_BALANCE_OF)}
                     >
-                      {DAI_BALANCE_OF}
+                      {FAU_BALANCE_OF}
                     </STestButton>
 
                     <STestButton
                       left
-                      onClick={() => this.testContractCall(DAI_TRANSFER)}
+                      onClick={() => this.testContractCall(FAU_TRANSFER)}
                     >
-                      {DAI_TRANSFER}
+                      {FAU_TRANSFER}
                     </STestButton>
+                    <p>For <code>fau.transfer()</code>, you need to have at least 1 FAU to start with.<br />
+                       Use <a href="https://erc20faucet.com">ERC20 Faucet</a> to mint some FAU on {chainName}.</p>
                   </STestButtonContainer>
                 </Column>
                 <h3>Balances</h3>
