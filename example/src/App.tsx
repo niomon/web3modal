@@ -513,7 +513,6 @@ class App extends React.Component<any, any> {
               </Column>
             ) : !!assets && !!assets.length ? (
               <SBalances>
-                {console.log(assets)}
                 <h3>Actions</h3>
                 <Column center>
                   <STestButtonContainer>
