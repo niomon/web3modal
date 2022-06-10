@@ -21,9 +21,6 @@ const ConnectToDitto = async (Ditto: any, opts: IDittoConnectorOptions) => {
 				alchemyId: opts.alchemyId
       });
 
-			// Initiate login immediately
-			await provider.enable()
-
 			return resolve(provider);
     } catch (err) {
       reject(err);
