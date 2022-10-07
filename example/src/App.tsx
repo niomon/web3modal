@@ -252,7 +252,7 @@ class App extends React.Component<any, any> {
       ditto: {
         package: Ditto,
         options: {
-          network: "rinkeby",
+          network: "goerli",
           appId: process.env.REACT_APP_DITTO_APP_ID,
           baseUrl: process.env.REACT_APP_DITTO_BASE_URL,
           infuraId
